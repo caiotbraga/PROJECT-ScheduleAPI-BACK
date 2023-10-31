@@ -17,4 +17,10 @@ public class UserController
         Console.WriteLine(user.PhoneNumber);
     }
 
+    [HttpGet]
+    public IEnumerable<User> GetUsers()
+    {
+        return users;
+    }
+
 }
