@@ -4,6 +4,8 @@ namespace ScheduleAPI.Models;
 
 public class User
 {
+    public int Id { get; set; }
+
     [Required(ErrorMessage = "Name is required.")]
     [MinLength(4, ErrorMessage = "The Name's length must be more than 4 characters"), MaxLength(50, ErrorMessage = "The Name's length can't be above 50 characters")]
     public string UserName { get; set; }
@@ -14,5 +16,5 @@ public class User
 
     [MinLength(11, ErrorMessage = "The Emails's length must be 11 characters"), MaxLength(11, ErrorMessage = "The Email's length must be 11 characters")]
     public string PhoneNumber { get; set; }
-
+    
 }
