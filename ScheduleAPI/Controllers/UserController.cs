@@ -30,9 +30,9 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<User> GetUsers([FromQuery] int skip = 0, [FromQuery] int take = 100)
+    public IEnumerable<ReadUserDto> GetUsers([FromQuery] int skip = 0, [FromQuery] int take = 100)
     {
-        return _context.Users.Skip(skip).Take(take);
+        return _mapper.Map<List<ReadUserDto>>(_context.Users.Skip(skip).Take(take));
     }
 
     [HttpGet("{id}")]
@@ -41,7 +41,8 @@ public class UserController : ControllerBase
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
 
         if (user == null) return NotFound("User doesn't exist!");
-        return Ok(user);
+        var userDto = _mapper.Map<ReadUserDto>(user);
+        return Ok(userDto);
     }
 
     [HttpPut("{id}")]
@@ -65,6 +66,16 @@ public class UserController : ControllerBase
             return ValidationProblem(ModelState);
         }
         _mapper.Map(userToUpdate, user);
+        _context.SaveChanges();
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteUser(int id)
+    {
+        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        if (user == null) return NotFound("User doesn't exist!");
+        _context.Remove(user);
         _context.SaveChanges();
         return NoContent();
     }
