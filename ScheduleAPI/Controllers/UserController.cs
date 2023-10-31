@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using ScheduleAPI.Data;
 using ScheduleAPI.Dtos;
@@ -52,4 +53,19 @@ public class UserController : ControllerBase
         return NoContent();
     }
 
+    [HttpPatch("{id}")]
+    public IActionResult UpdateUserPath(int id, JsonPatchDocument<UpdateUserDto> patch)
+    {
+        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        if (user == null) return NotFound("User doesn't exist!");
+        var userToUpdate = _mapper.Map<UpdateUserDto>(user);
+        patch.ApplyTo(userToUpdate, ModelState);
+        if (!TryValidateModel(userToUpdate))
+        {
+            return ValidationProblem(ModelState);
+        }
+        _mapper.Map(userToUpdate, user);
+        _context.SaveChanges();
+        return NoContent();
+    }
 }
