@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using ScheduleAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("UserConnection");
+
+builder.Services.AddDbContext<UserContext>(opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 // Add services to the container.
 

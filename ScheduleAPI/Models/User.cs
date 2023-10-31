@@ -4,6 +4,8 @@ namespace ScheduleAPI.Models;
 
 public class User
 {
+    [Key]
+    [Required]
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Name is required.")]
