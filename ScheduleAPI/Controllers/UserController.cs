@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using ScheduleAPI.Data;
+using ScheduleAPI.Dtos;
 using ScheduleAPI.Models;
 
 namespace ScheduleAPI.Controllers;
@@ -9,15 +11,18 @@ namespace ScheduleAPI.Controllers;
 public class UserController : ControllerBase
 {
     private UserContext _context;
+    private IMapper _mapper;
 
-    public UserController(UserContext userContext)
+    public UserController(UserContext userContext, IMapper mapper)
     {
         _context = userContext;
+        _mapper = mapper;
     }
 
     [HttpPost]
-    public IActionResult AddUser([FromBody] User user)
+    public IActionResult AddUser([FromBody] CreateUserDto userDto)
     {
+        User user = _mapper.Map<User>(userDto);
         _context.Users.Add(user);
         _context.SaveChanges();
         return CreatedAtAction(nameof(GetUserById), new { id = user.Id}, user);

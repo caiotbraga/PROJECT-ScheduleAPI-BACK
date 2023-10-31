@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ScheduleAPI.Models;
+namespace ScheduleAPI.Dtos;
 
-public class User
+public class CreateUserDto
 {
-    [Key]
-    [Required]
-    public int Id { get; set; }
-
     [Required(ErrorMessage = "Name is required.")]
     [MinLength(4, ErrorMessage = "The Name's length must be more than 4 characters"), MaxLength(50, ErrorMessage = "The Name's length can't be above 50 characters")]
     public string UserName { get; set; }
