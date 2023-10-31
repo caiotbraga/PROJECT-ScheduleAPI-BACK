@@ -43,4 +43,13 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
+    [HttpPut("{id}")]
+    public IActionResult UpdateUser(int id, [FromBody] UpdateUserDto userDto) {
+        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        if (user == null) return NotFound("User doesn't exist!");
+        _mapper.Map(userDto, user);
+        _context.SaveChanges();
+        return NoContent();
+    }
+
 }
