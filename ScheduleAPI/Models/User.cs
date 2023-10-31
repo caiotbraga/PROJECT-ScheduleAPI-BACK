@@ -16,7 +16,7 @@ public class User
     [MinLength(10, ErrorMessage = "The Emails's length must be more than 10 characters"), MaxLength(50, ErrorMessage = "The Email's length can't be above 50 character")]
     public string Email { get; set; }
 
-    [MinLength(11, ErrorMessage = "The Emails's length must be 11 characters"), MaxLength(11, ErrorMessage = "The Email's length must be 11 characters")]
+    [MinLength(11, ErrorMessage = "The Phone number's length must be 11 characters"), MaxLength(11, ErrorMessage = "The Email's length must be 11 characters")]
     public string PhoneNumber { get; set; }
     
 }
