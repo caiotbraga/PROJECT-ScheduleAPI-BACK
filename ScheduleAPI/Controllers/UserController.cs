@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScheduleAPI.Data;
 using ScheduleAPI.Dtos;
 using ScheduleAPI.Models;
+using ScheduleAPI.Service;
 
 namespace ScheduleAPI.Controllers;
 
@@ -11,12 +12,11 @@ namespace ScheduleAPI.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    private UserContext _context;
+    private UserService _userService;
     private IMapper _mapper;
-
-    public UserController(UserContext userContext, IMapper mapper)
+    public UserController(UserService userService, IMapper mapper)
     {
-        _context = userContext;
+        _userService = userService;
         _mapper = mapper;
     }
 
@@ -24,21 +24,20 @@ public class UserController : ControllerBase
     public IActionResult AddUser([FromBody] CreateUserDto userDto)
     {
         User user = _mapper.Map<User>(userDto);
-        _context.Users.Add(user);
-        _context.SaveChanges();
-        return CreatedAtAction(nameof(GetUserById), new { id = user.Id}, user);
+        _userService.AddUser(userDto);
+        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
     }
 
     [HttpGet]
     public IEnumerable<ReadUserDto> GetUsers([FromQuery] int skip = 0, [FromQuery] int take = 100)
     {
-        return _mapper.Map<List<ReadUserDto>>(_context.Users.Skip(skip).Take(take));
+        return _userService.GetUsers(skip, take);
     }
 
     [HttpGet("{id}")]
-    public IActionResult? GetUserById(int id)
+    public IActionResult GetUserById(int id)
     {
-        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        var user = _userService.GetUserById(id);
 
         if (user == null) return NotFound("User doesn't exist!");
         var userDto = _mapper.Map<ReadUserDto>(user);
@@ -46,18 +45,18 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateUser(int id, [FromBody] UpdateUserDto userDto) {
-        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+    public IActionResult UpdateUser(int id, [FromBody] UpdateUserDto userDto)
+    {
+        var user = _userService.UpdateUser(id, userDto);
         if (user == null) return NotFound("User doesn't exist!");
-        _mapper.Map(userDto, user);
-        _context.SaveChanges();
         return NoContent();
     }
 
     [HttpPatch("{id}")]
     public IActionResult UpdateUserPath(int id, JsonPatchDocument<UpdateUserDto> patch)
     {
-        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        bool validation = false;
+        var user = _userService.GetUserById(id);
         if (user == null) return NotFound("User doesn't exist!");
         var userToUpdate = _mapper.Map<UpdateUserDto>(user);
         patch.ApplyTo(userToUpdate, ModelState);
@@ -65,18 +64,18 @@ public class UserController : ControllerBase
         {
             return ValidationProblem(ModelState);
         }
+        validation = true;
         _mapper.Map(userToUpdate, user);
-        _context.SaveChanges();
+        _userService.UpdateUserPath(validation);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteUser(int id)
     {
-        var user = _context.Users.FirstOrDefault(user => user.Id == id);
+        var user = _userService.GetUserById(id);
         if (user == null) return NotFound("User doesn't exist!");
-        _context.Remove(user);
-        _context.SaveChanges();
+        _userService.DeleteUser(id);
         return NoContent();
     }
 }
