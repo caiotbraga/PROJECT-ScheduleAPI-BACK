@@ -6,7 +6,8 @@ namespace ScheduleAPI.Data;
 
 public class UserContext : DbContext
 {
-    public UserContext(DbContextOptions<UserContext> opts) : base(opts)
+    public UserContext(DbContextOptions<UserContext> opts)
+        : base(opts)
     {
 
     }

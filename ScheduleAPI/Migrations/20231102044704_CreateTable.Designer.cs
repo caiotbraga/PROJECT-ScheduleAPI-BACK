@@ -10,8 +10,8 @@ using ScheduleAPI.Data;
 namespace ScheduleAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20231031190713_CreateUserTable")]
-    partial class CreateUserTable
+    [Migration("20231102044704_CreateTable")]
+    partial class CreateTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
