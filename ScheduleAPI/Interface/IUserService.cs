@@ -7,10 +7,10 @@ namespace ScheduleAPI.Interface
 {
     public interface IUserService
     {
-        public void AddUser([FromBody] CreateUserDto user);
-        public IEnumerable<ReadUserDto> GetUsers([FromQuery] int skip, [FromQuery] int take);
+        public void AddUser(CreateUserDto user);
+        public IEnumerable<ReadUserDto> GetUsers(int skip, int take);
         public User GetUserById(int id);
-        public User UpdateUser(int id, [FromBody] UpdateUserDto user);
+        public User UpdateUser(int id,  UpdateUserDto user);
         public void UpdateUserPath(bool validation);
         public void DeleteUser(int id);
     }

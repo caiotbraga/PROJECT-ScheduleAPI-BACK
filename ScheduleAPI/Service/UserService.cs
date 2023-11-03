@@ -13,30 +13,34 @@ public class UserService : IUserService
     private UserContext _context;
     private IMapper _mapper;
 
-    public UserService(UserContext userContext, IMapper mapper)
+    public UserService()
+    {
+
+    }
+        public UserService(UserContext userContext, IMapper mapper)
     {
         _context = userContext;
         _mapper = mapper;
     }
 
-    public void AddUser([FromBody] CreateUserDto userDto)
+    public virtual void AddUser([FromBody] CreateUserDto userDto)
     {
         User user = _mapper.Map<User>(userDto);
         _context.Users.Add(user);
         _context.SaveChanges();
     }
 
-    public IEnumerable<ReadUserDto> GetUsers([FromQuery] int skip, [FromQuery] int take)
+    public virtual IEnumerable<ReadUserDto> GetUsers([FromQuery] int skip, [FromQuery] int take)
     {
         return _mapper.Map<List<ReadUserDto>>(_context.Users.Skip(skip).Take(take));
     }
 
-    public User? GetUserById(int id)
+    public virtual User? GetUserById(int id)
     {
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
         return user;
     }
-    public User UpdateUser(int id, [FromBody] UpdateUserDto userDto)
+    public virtual User UpdateUser(int id, [FromBody] UpdateUserDto userDto)
     {
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
         if (user == null)
@@ -51,12 +55,12 @@ public class UserService : IUserService
         }
     }
 
-    public void UpdateUserPath(bool validation)
+    public virtual void UpdateUserPath(bool validation)
     {
         _context.SaveChanges();
     }
 
-    public void DeleteUser(int id)
+    public virtual void DeleteUser(int id)
     {
         var user = _context.Users.FirstOrDefault(user => user.Id == id);
         _context.Remove(user);

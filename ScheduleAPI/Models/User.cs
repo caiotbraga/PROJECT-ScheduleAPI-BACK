@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ScheduleAPI.Interface;
+using System.ComponentModel.DataAnnotations;
 
 namespace ScheduleAPI.Models;
 
-public class User
+public class User : IUser
 {
     [Key]
     [Required]

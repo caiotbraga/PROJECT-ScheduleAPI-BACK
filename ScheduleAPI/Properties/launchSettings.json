@@ -11,7 +11,7 @@
   "profiles": {
     "ScheduleAPI": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:7156;http://localhost:5277",
       "environmentVariables": {

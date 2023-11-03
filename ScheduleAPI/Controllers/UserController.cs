@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using ScheduleAPI.Data;
 using ScheduleAPI.Dtos;
 using ScheduleAPI.Models;
 using ScheduleAPI.Service;
@@ -34,7 +33,7 @@ public class UserController : ControllerBase
         return _userService.GetUsers(skip, take);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("/users/edit/{id}")]
     public IActionResult GetUserById(int id)
     {
         var user = _userService.GetUserById(id);
