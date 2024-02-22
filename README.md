@@ -79,6 +79,10 @@ The API will be available at `https://localhost:5001` by default.
 - Entity Framework Core
 - AutoMapper
 
+## Testing with Swagger
+
+Swagger is integrated into the API for testing and exploring endpoints. After running the application, navigate to `https://localhost:7156/swagger` to access the Swagger UI.
+
 ## Contributing
 
 Contributions are welcome! Feel free to open issues and pull requests.
