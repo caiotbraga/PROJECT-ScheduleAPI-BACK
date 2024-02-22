@@ -1,15 +1,88 @@
-⭐ Projeto | Agenda de usuários
+# ScheduleAPI - Backend Documentation
 
-Desenvolvi um sistema de agenda em apenas 4 dias, utilizando tecnologias de ponta e seguindo as melhores práticas de desenvolvimento:
+Welcome to the documentation for the ScheduleAPI backend. This API provides functionality to manage users' schedules.
 
-🔷 Backend construído em .NET Core 6, com um sólido conjunto de padrões de projeto (Model, Controller, Services, Interfaces, Injeção de Dependência).
-Utilizei o Entity Framework para a gestão eficiente do banco de dados MySQL, garantindo a persistência dos dados de forma segura e eficaz.
-Integrei o Swagger para documentação e teste fácil dos endpoints, proporcionando uma experiência de desenvolvimento e manutenção mais fluida. Adotei bibliotecas essenciais como Automapper, Pomelo e CORS, aprimorando a eficiência do desenvolvimento e a segurança da aplicação.
+## Overview
 
-💻 No front-end, superei um desafio ao utilizar Vue.js, uma tecnologia que nunca tinha ouvido falar e em apenas 4 dias criei uma interface intuitiva e dinâmica para a agenda, com a criação de componentes em Vue.js bem estruturados para lista, criação, edição e deleção de usuários.
+The ScheduleAPI backend is built using ASP.NET Core and Entity Framework Core. It follows RESTful principles to expose endpoints for CRUD operations on user schedules.
 
-🧪 Garanti o funcionamento do sistema através da implementação de testes completos nos métodos REST desenvolvidos, assegurando que a aplicação funcione de forma consistente e confiável.
+## Installation
 
-👥 Esta experiência me permitiu explorar novas tecnologias e entregar um produto sólido em um curto período de tempo, demonstrando minha habilidade em desenvolvimento web full-stack e minha capacidade de aprendizado rápido.
+1. **Clone the Repository:**
+```
+  - git clone https://github.com/caiotbraga/ScheduleAPI.git
+```
+2. **Navigate to the Project Directory:**
+```
+  - cd ScheduleAPI
+```
+3. **Restore Packages:**
+```
+  - dotnet restore
+```
+5. **Run the Application:**
+```
+  - dotnet run
+```
 
-🚨FRONT-END: Front end da aplicação em https://github.com/caiotbraga/Schedule
+
+The API will be available at `https://localhost:5001` by default.
+
+## Endpoints
+
+### User Management
+
+### **Add User**
+- URL: `POST /user`
+- Request Body: 
+ ```json
+ {
+   "userName": "example_user",
+   "email": "user@example.com",
+   "phoneNumber": "123456789"
+ }
+ ```
+- Response: Returns the newly created user.
+
+### **Get Users**
+- URL: `GET /user`
+- Query Parameters: 
+ - `skip` (optional): Number of records to skip (default: 0)
+ - `take` (optional): Number of records to take (default: 100)
+- Response: Returns a list of users with pagination.
+
+### **Get User by ID**
+- URL: `GET /user/{id}`
+- Path Parameter: `id` - ID of the user to retrieve
+- Response: Returns the user with the specified ID.
+
+### **Update User**
+- URL: `PUT /user/{id}`
+- Path Parameter: `id` - ID of the user to update
+- Request Body: Updated user data
+- Response: No content.
+
+### **Partially Update User**
+- URL: `PATCH /user/{id}`
+- Path Parameter: `id` - ID of the user to update
+- Request Body: JSON Patch document for partial update
+- Response: No content.
+
+### **Delete User**
+- URL: `DELETE /user/{id}`
+- Path Parameter: `id` - ID of the user to delete
+- Response: No content.
+
+## Dependencies
+
+- ASP.NET Core
+- Entity Framework Core
+- AutoMapper
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues and pull requests.
+
+## License
+
+This project was made by Caio Braga (github.com/caiotbraga)
