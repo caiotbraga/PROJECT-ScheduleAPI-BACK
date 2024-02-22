@@ -89,4 +89,4 @@ Contributions are welcome! Feel free to open issues and pull requests.
 
 ## License
 
-This project was made by Caio Braga (github.com/caiotbraga)
+This project is licensed under the [MIT License](LICENSE).
