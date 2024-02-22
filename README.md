@@ -10,19 +10,19 @@ The ScheduleAPI backend is built using ASP.NET Core and Entity Framework Core. I
 
 1. **Clone the Repository:**
 ```
-  - git clone https://github.com/caiotbraga/ScheduleAPI.git
+   git clone https://github.com/caiotbraga/ScheduleAPI.git
 ```
 2. **Navigate to the Project Directory:**
 ```
-  - cd ScheduleAPI
+   cd ScheduleAPI
 ```
 3. **Restore Packages:**
 ```
-  - dotnet restore
+   dotnet restore
 ```
 5. **Run the Application:**
 ```
-  - dotnet run
+   dotnet run
 ```
 
 
