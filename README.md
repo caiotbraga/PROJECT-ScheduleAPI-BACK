@@ -1,4 +1,4 @@
-# ScheduleAPI - Backend Documentation
+<h1 align="center">ScheduleAPI - Backend Documentation</h1>
 
 Welcome to the documentation for the ScheduleAPI backend. This API provides functionality to manage users' schedules.
 
@@ -6,6 +6,13 @@ Welcome to the documentation for the ScheduleAPI backend. This API provides func
 
 The ScheduleAPI backend is built using ASP.NET Core and Entity Framework Core. It follows RESTful principles to expose endpoints for CRUD operations on user schedules.
 
+<h2 align="center">💻Technologies useds</h2>
+<p align="center">
+  <a href="https://learn.microsoft.com/pt-br/dotnet/csharp" target="blank"><img src="https://img.shields.io/badge/C%23-purple?logo=c-sharp&logoColor=white&labelColor=421e6b" alt="C# Badge"></a>
+<a href="https://dotnet.microsoft.com/download/dotnet-core/3.1" target="_blank"><img src="https://img.shields.io/badge/ASP.NET_Core-3.1-grey?logo=.net&logoColor=white&labelColor=purple" alt="ASP.NET Core 3.1 Badge"></a>
+<a href="https://docs.microsoft.com/aspnet/core/razor-pages/" target="_blank"><img src="https://img.shields.io/badge/Razor_Engine-blue?logo=.net&logoColor=white&labelColor=blue" alt="Razor Engine Badge"></a>
+<a href="https://www.mysql.com/" target="_blank"><img src="https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white" alt="MySQL Badge"></a>
+</p>
 ## Installation
 
 1. **Clone the Repository:**
